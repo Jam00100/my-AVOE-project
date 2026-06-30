@@ -1,6 +1,10 @@
 import os
 
 def rename_image(file_dir, pre_fix):
+	"""
+	file_dir = product images dir
+	pre_fix = product brand
+	"""
 
 	files = os.listdir(file_dir)
 	files = sorted(files)
@@ -9,13 +13,14 @@ def rename_image(file_dir, pre_fix):
 	for f in files:
 		if f == ".DS_Store":
 			continue
-		if not "_n." in f:
-			print("Naming Completed")
+		if pre_fix in f:
+			print(f"{pre_fix} Naming Completed")
 			continue
 
 		old_name = f
-		f = f.split("_n")
-		new_name = f"{pre_fix}_{count+1}{f[1]}"
+		f = f.split(".")
+		# Avoid multiple "." and image files in different formats.
+		new_name = f"{pre_fix}_{count+1}.{f[-1]}"
 
 		print(old_name, "->", new_name)
 		old_path = os.path.join(file_dir, old_name)
@@ -37,7 +42,7 @@ def main(brand):
 
 if __name__ == "__main__":
 	brands = [
-		"𝐍𝐅 𝐁𝐎𝐃𝐘 𝐓𝐎𝐏", "Sundae Swimwear Collection"
+		"𝐍𝐅 𝐁𝐎𝐃𝐘 𝐓𝐎𝐏", "Sundae Swimwear Collection", "Nova set"
 	]
 	for brand in brands:
 		main(brand)
