@@ -1,3 +1,5 @@
+/* ===== Reset ===== */
+
 *{
 	margin:0;
 	padding:0;
@@ -28,16 +30,41 @@ ul{
 
 }
 
+/* ===== Header ===== */
 header{
-	display: flex;
+	display: flex; /*讓header左右排列*/
 	justify-content:space-between;
 	align-items:center;
 	padding: 20px 80px;
+	border-bottom:1px solid #eee;
+}
+
+.logo{
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 nav ul{
 	display: flex;
 	gap: 40px;
+}
+
+.nav-links{
+
+	display:flex;
+	gap:40px;
+
+}
+.nav-links a{
+
+	transition:0.3s;
+
+}
+.nav-links a:hover{
+
+	color:#999;
+
 }
 
 #hero{
