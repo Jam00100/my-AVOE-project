@@ -6,6 +6,7 @@
 	box-sizing:border-box;
 }
 
+/* ===== Global ===== */
 body{
 
 	font-family:Arial, Helvetica, sans-serif;
@@ -67,6 +68,7 @@ nav ul{
 
 }
 
+/* ===== hero ====== */
 #hero{
 	height: 80vh;
 	display: flex;
@@ -74,6 +76,48 @@ nav ul{
 	align-items: center;
 	text-align: center;
 	background: #f5f5f5;
+}
+
+.hero-content{
+	max-width: 700px;
+}
+
+.hero-content h1{
+	font-size: 50px;
+	margin-bottom: 15px;
+}
+
+.hero-content p{
+	font-size: 30px;
+
+	color:#666;
+
+	margin-bottom: 40px;
+}
+
+.hero-content a{
+	font-size: 40px;
+}
+
+/* ===== buttom ===== */
+.btn{
+	display: inline-block;
+	padding: 5px 25px;
+	background-color: #111;
+	color: white;
+	border-radius: 5px;
+	transition: .3s;
+}
+
+.btn:hover{
+	/* 讓這個按鈕變色hover */
+	background: #4444;
+}
+
+section{
+	/* 不要讓按鈕和字黏一起 */
+	padding:100px 0;
+
 }
 
 .product-grid{
