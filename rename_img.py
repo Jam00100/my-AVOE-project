@@ -42,7 +42,7 @@ def main(brand):
 
 if __name__ == "__main__":
 	brands = [
-		"𝐍𝐅 𝐁𝐎𝐃𝐘 𝐓𝐎𝐏", "Sundae Swimwear Collection", "Nova set"
+		"NF_BODY_TOP", "Sundae_Swimwear_Collection", "Nova_set"
 	]
 	for brand in brands:
 		main(brand)
