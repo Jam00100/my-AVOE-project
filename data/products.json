@@ -1,17 +1,20 @@
 [
 	{
+		"id" : "1",
 		"name": "Nova Set",
 		"category": "Swimwear",
 		"price": "NTD $980",
 		"image": "./images/Nova_Set/Nova_set_1.jpg"
 	},
 	{
+		"id" : "2",
 		"name": "Sundae Swimwear",
 		"category": "Swimwear",
 		"price": "NTD $1280",
 		"image": "./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_3.jpg"
 	},
 	{
+		"id" : "3",
 		"name": "NF Body Top",
 		"category": "Shirt",
 		"price": "NTD $1380",
