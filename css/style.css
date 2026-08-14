@@ -148,6 +148,11 @@ ul{
 	margin-top:20px;
 }
 
+.product-card .product-category{
+	text-align:center;
+	margin-top:20px;
+}
+
 .product-title{
 	text-align:center;
 	margin:10px 0;
@@ -159,6 +164,12 @@ ul{
 	margin-bottom:20px;
 	color:#555;
 	font-weight:bold;
+}
+
+.product-card .product-price{
+	text-align:center;
+	margin-bottom:20px;
+	font-size:16px;
 }
 
 #about{
@@ -205,21 +216,22 @@ footer{
 	font-size:42px;
 }
 
-.product-price{
+.product-info .product-price{
+	text-align:left;
+	margin-bottom:0;
 	font-size:30px;
-	font-weight:bold;
 	color:#222;
+}
+
+.product-info .product-category{
+	text-align:left;
+	margin-top:0;
+	letter-spacing:2px;
 }
 
 .product-description{
 	color:#666;
 	line-height:1.8;
-}
-
-.product-category{
-	color:#888;
-	text-transform:uppercase;
-	letter-spacing:2px;
 }
 
 /* responvise change */
@@ -265,6 +277,12 @@ footer{
 	.product-info h1{
 		font-size:32px;
 	}
+	.quantity-selector{
+		justify-content:center;
+	}
+	.add-cart-btn{
+		margin:0 auto;
+	}
 }
 
 /* Quantity */
@@ -284,6 +302,8 @@ footer{
 	font-size:20px;
 	cursor:pointer;
 	transition:.3s;
+    opacity:.4;
+    cursor:not-allowed;
 }
 
 .quantity-selector button:hover{
