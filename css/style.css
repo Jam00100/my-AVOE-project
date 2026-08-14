@@ -140,12 +140,10 @@ ul{
 }
 
 .product-category{
-	text-align:center;
 	font-size:14px;
 	color:#888;
 	letter-spacing:1px;
 	text-transform:uppercase;
-	margin-top:20px;
 }
 
 .product-card .product-category{
@@ -160,8 +158,6 @@ ul{
 }
 
 .product-price{
-	text-align:center;
-	margin-bottom:20px;
 	color:#555;
 	font-weight:bold;
 }
