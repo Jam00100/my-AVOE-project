@@ -302,11 +302,16 @@ footer{
 	font-size:20px;
 	cursor:pointer;
 	transition:.3s;
+}
+
+/* 只有 disabled 的按鈕才變灰 */
+.quantity-selector button:disabled{
 	opacity:.4;
 	cursor:not-allowed;
 }
 
-.quantity-selector button:hover{
+/* 只有可以使用的按鈕才有 hover */
+.quantity-selector button:not(:disabled):hover{
 	background:#444;
 }
 
