@@ -29,7 +29,7 @@ async function loadProduct() {
         productDetail.innerHTML = createProductDetail(product);
 
         // 建立按鈕
-        setupQuantityButtons();
+        setupQuantityButtons(product);
 
     } catch (error) {
         console.error(error);
@@ -74,7 +74,8 @@ function createProductDetail(product) {
 }
 
 // 數量按鈕
-function setupQuantityButtons() {
+// 這個功能指向product
+function setupQuantityButtons(product) {
 
     // 商品數量
     let quantity = 1;
@@ -108,8 +109,44 @@ function setupQuantityButtons() {
 
     // 點加入購物車
     addCartBtn.addEventListener("click", () => {
-        alert(`Added ${quantity} item(s) to cart.`);
-    });
-    // 初始化
-    updateQuantity();
+
+		addToCart(product, quantity);
+
+		alert(`Added ${quantity} item(s) to cart.`);
+	});
+	// 初始化
+	updateQuantity();
+}
+
+// Add to Cart function
+// 接收「哪件商品」和「幾件」，然後放進購物車
+function addToCart(product, quantity) {
+	// 讀取local storage如果有資料就讀取，如果沒有就建立Array
+	const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+	// 檢查商品是否已在購物車
+	const existingProduct = cart.find(item => item.id === product.id);
+
+	// 利用if else來更新購物車
+    if (existingProduct) {
+
+		existingProduct.quantity += quantity;
+	} else {
+		// 獲得商品資訊
+		const cartItem = {
+			id: product.id,
+			name: product.name,
+			price: product.price,
+			image: product.image,
+			quantity: quantity
+		};
+		cart.push(cartItem);
+	}
+
+	// 更新購物車資料
+	localStorage.setItem(
+		"cart",
+		JSON.stringify(cart)
+	);
+
 }
