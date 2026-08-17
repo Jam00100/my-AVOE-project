@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Collection | AVOE</title>
+
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	<header class="header">
+		<div class="container header-container">
+
+			<a href="./index.html" class="logo">
+				AVOE
+			</a>
+
+			<nav class="navbar">
+				<ul class="nav-links">
+
+					<li>
+						<a href="./index.html">Home</a>
+					</li>
+
+					<li>
+						<a href="./collection.html">Collection</a>
+					</li>
+
+					<li>
+						<a href="#">About</a>
+					</li>
+
+					<li>
+						<a href="./cart.html">
+							Cart (<span id="cart-count">0</span>)
+						</a>
+					</li>
+
+				</ul>
+			</nav>
+
+		</div>
+	</header>
+
+	<main>
+
+		<section class="collection-section">
+
+			<div class="container">
+
+				<h1 class="collection-title">
+					Collection
+				</h1>
+
+				<div class="collection-controls">
+
+					<input
+						type="search"
+						id="search-input"
+						placeholder="Search products..."
+					>
+
+					<div class="category-filters">
+
+						<button
+							class="filter-btn active"
+							data-category="All">
+							All
+						</button>
+
+						<button
+							class="filter-btn"
+							data-category="Swimwear">
+							Swimwear
+						</button>
+
+					</div>
+
+				</div>
+
+				<div
+					class="product-grid"
+					id="collection-grid">
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+
+	<footer>
+		<p>© 2026 AVOE Official</p>
+	</footer>
+
+	<script src="./js/collection.js"></script>
+
+</body>
+
+</html>
