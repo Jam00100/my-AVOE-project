@@ -39,6 +39,7 @@ async function loadProduct() {
 
 // 執行
 loadProduct();
+updateCartCount();
 
 function formatPrice(price) {
 
@@ -118,6 +119,8 @@ function setupQuantityButtons(product) {
 
 		addToCart(product, quantity);
 
+		updateCartCount();
+
 		alert(`Added ${quantity} item(s) to cart.`);
 	});
 	// 初始化
@@ -155,4 +158,21 @@ function addToCart(product, quantity) {
 		JSON.stringify(cart)
 	);
 
+}
+
+function updateCartCount() {
+
+	const cart =
+		JSON.parse(localStorage.getItem("cart")) || [];
+
+	const cartCount =
+		document.getElementById("cart-count");
+
+	let totalQuantity = 0;
+
+	cart.forEach(item => {
+		totalQuantity += item.quantity;
+	});
+
+	cartCount.textContent = totalQuantity;
 }

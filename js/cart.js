@@ -111,6 +111,20 @@ function saveCart() {
 
 }
 
+function updateCartCount() {
+
+	const cartCount =
+		document.getElementById("cart-count");
+
+	let totalQuantity = 0;
+
+	cart.forEach(item => {
+		totalQuantity += item.quantity;
+	});
+
+	cartCount.textContent = totalQuantity;
+}
+
 // =============================
 // Cart Events
 // =============================
@@ -179,6 +193,7 @@ function updateCart() {
 	saveCart();
 	renderCart();
 	calculateTotal();
+	updateCartCount();
 	setupCartEvents();
 }
 
@@ -188,4 +203,5 @@ function updateCart() {
 
 renderCart();
 calculateTotal();
+updateCartCount();
 setupCartEvents();

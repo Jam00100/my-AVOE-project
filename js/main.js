@@ -28,6 +28,25 @@ function createProductCard(product) {
 	`;
 }
 
+function updateCartCount() {
+
+	const cart =
+		JSON.parse(localStorage.getItem("cart")) || [];
+
+	const cartCount =
+		document.getElementById("cart-count");
+
+	let totalQuantity = 0;
+
+	cart.forEach(item => {
+		totalQuantity += item.quantity;
+	});
+
+	cartCount.textContent = totalQuantity;
+}
+
+updateCartCount();
+
 // 2. 讀取商品資料
 fetch("./data/products.json")
 	.then(response => response.json())
