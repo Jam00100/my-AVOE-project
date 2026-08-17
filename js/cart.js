@@ -12,6 +12,12 @@ let cart =
 // Render Cart
 // =============================
 
+function formatPrice(price) {
+
+	return `NTD $${price.toLocaleString("zh-TW")}`;
+
+}
+
 function renderCart() {
 
 	if (cart.length === 0) {
@@ -82,26 +88,13 @@ function renderCart() {
 // =============================
 // Price
 // =============================
-function getPriceNumber(price) {
-
-	return Number(
-		price.replace("NTD $", "")
-	);
-
-}
-
 function calculateTotal() {
 
 	let total = 0;
 	cart.forEach(item => {
-
-		const price =
-			getPriceNumber(item.price);
-		total +=
-			price * item.quantity;
+		total += item.price * item.quantity;
 	});
-	cartTotal.textContent =
-		`NTD $${total}`;
+	cartTotal.textContent = formatPrice(total);
 
 }
 

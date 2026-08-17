@@ -10,6 +10,11 @@ const productGrid = document.getElementById("product-grid");
  * @param {Object} product 商品資料
  * @returns {string} 商品卡 HTML
  */
+
+function formatPrice(price) {
+	return `NTD $${price.toLocaleString("zh-TW")}`;
+}
+
 function createProductCard(product) {
 	return `
 		<div class="product-card">
@@ -17,7 +22,7 @@ function createProductCard(product) {
 				<img src="${product.image}" alt="${product.name}">
 				<p class="product-category"> ${product.category} </p>
 				<h3 class="product-title">${product.name} </h3>
-				<p class="product-price"> ${product.price} </p>
+				<p class="product-price"> ${formatPrice(product.price)} </p>
 			</a>
 		</div>
 	`;

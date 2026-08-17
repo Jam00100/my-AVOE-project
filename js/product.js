@@ -40,6 +40,12 @@ async function loadProduct() {
 // 執行
 loadProduct();
 
+function formatPrice(price) {
+
+	return `NTD $${price.toLocaleString("zh-TW")}`;
+
+}
+
 // =====================================
 // 建立商品詳細頁
 // =====================================
@@ -57,7 +63,7 @@ function createProductDetail(product) {
 
                 <h1> ${product.name}</h1>
 
-                <p class="product-price">${product.price}</p>
+                <p class="product-price">${formatPrice(product.price)}</p>
 
                 <div class="quantity-selector">
                     <button id="minus-btn">−</button>
