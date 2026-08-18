@@ -2,6 +2,9 @@
 // Featured Products
 // =============================
 
+// 從utils.js中import function
+import {formatPrice, updateCartCount} from "./utils.js";
+
 // 1. 取得商品
 const productGrid = document.getElementById("product-grid");
 
@@ -11,9 +14,6 @@ const productGrid = document.getElementById("product-grid");
  * @returns {string} 商品卡 HTML
  */
 
-function formatPrice(price) {
-	return `NTD $${price.toLocaleString("zh-TW")}`;
-}
 
 function createProductCard(product) {
 	return `
@@ -26,23 +26,6 @@ function createProductCard(product) {
 			</a>
 		</div>
 	`;
-}
-
-function updateCartCount() {
-
-	const cart =
-		JSON.parse(localStorage.getItem("cart")) || [];
-
-	const cartCount =
-		document.getElementById("cart-count");
-
-	let totalQuantity = 0;
-
-	cart.forEach(item => {
-		totalQuantity += item.quantity;
-	});
-
-	cartCount.textContent = totalQuantity;
 }
 
 updateCartCount();
