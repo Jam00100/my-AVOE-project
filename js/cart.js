@@ -158,7 +158,7 @@ function setupCartEvents() {
 // =============================
 
 function updateCart() {
-	saveCart();
+	saveCart(cart);
 	renderCart();
 	calculateTotal();
 	updateCartCount();
