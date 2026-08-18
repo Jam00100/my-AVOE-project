@@ -12,6 +12,8 @@ let products = [];
 
 let selectedCategory = "All";
 
+// 從utils.js中import function
+import {formatPrice, updateCartCount} from "./utils.js";
 
 // =============================
 // Load Products
@@ -197,51 +199,6 @@ filterButtons.forEach(button => {
 	});
 
 });
-
-
-// =============================
-// Price
-// =============================
-
-function formatPrice(price) {
-
-	return `NTD $${price.toLocaleString("zh-TW")}`;
-
-}
-
-
-// =============================
-// Cart Count
-// =============================
-
-function updateCartCount() {
-
-	const cart =
-		JSON.parse(
-			localStorage.getItem("cart")
-		) || [];
-
-
-	const cartCount =
-		document.getElementById("cart-count");
-
-
-	let totalQuantity = 0;
-
-
-	cart.forEach(item => {
-
-		totalQuantity +=
-			item.quantity;
-
-	});
-
-
-	cartCount.textContent =
-		totalQuantity;
-
-}
-
 
 // =============================
 // Start
