@@ -1,7 +1,7 @@
 // Product Detail
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount} from "./utils.js";
+import {formatPrice, updateCartCount, getCart, saveCart} from "./utils.js";
 
 // 取得商品資訊顯示區域
 const productDetail = document.getElementById("product-detail");
@@ -128,7 +128,7 @@ function setupQuantityButtons(product) {
 // 接收「哪件商品」和「幾件」，然後放進購物車
 function addToCart(product, quantity) {
 	// 讀取local storage如果有資料就讀取，如果沒有就建立Array
-	const cart = JSON.parse(localStorage.getItem("cart")) || [];
+	const cart = getCart();
 
 	// 檢查商品是否已在購物車
 	const existingProduct = cart.find(item => item.id === product.id);
@@ -150,9 +150,6 @@ function addToCart(product, quantity) {
 	}
 
 	// 更新購物車資料
-	localStorage.setItem(
-		"cart",
-		JSON.stringify(cart)
-	);
+	saveCart(cart);
 
 }
