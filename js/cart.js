@@ -7,17 +7,12 @@ const cartTotal =
 let cart =
 	JSON.parse(localStorage.getItem("cart")) || [];
 
+// 從utils.js中import function
+import {formatPrice, updateCartCount} from "./utils.js";
 
 // =============================
 // Render Cart
 // =============================
-
-function formatPrice(price) {
-
-	return `NTD $${price.toLocaleString("zh-TW")}`;
-
-}
-
 function renderCart() {
 
 	if (cart.length === 0) {
@@ -109,20 +104,6 @@ function saveCart() {
 		JSON.stringify(cart)
 	);
 
-}
-
-function updateCartCount() {
-
-	const cartCount =
-		document.getElementById("cart-count");
-
-	let totalQuantity = 0;
-
-	cart.forEach(item => {
-		totalQuantity += item.quantity;
-	});
-
-	cartCount.textContent = totalQuantity;
 }
 
 // =============================
