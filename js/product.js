@@ -1,5 +1,8 @@
 // Product Detail
 
+// 從utils.js中import function
+import {formatPrice, updateCartCount} from "./utils.js";
+
 // 取得商品資訊顯示區域
 const productDetail = document.getElementById("product-detail");
 
@@ -40,12 +43,6 @@ async function loadProduct() {
 // 執行
 loadProduct();
 updateCartCount();
-
-function formatPrice(price) {
-
-	return `NTD $${price.toLocaleString("zh-TW")}`;
-
-}
 
 // =====================================
 // 建立商品詳細頁
@@ -158,21 +155,4 @@ function addToCart(product, quantity) {
 		JSON.stringify(cart)
 	);
 
-}
-
-function updateCartCount() {
-
-	const cart =
-		JSON.parse(localStorage.getItem("cart")) || [];
-
-	const cartCount =
-		document.getElementById("cart-count");
-
-	let totalQuantity = 0;
-
-	cart.forEach(item => {
-		totalQuantity += item.quantity;
-	});
-
-	cartCount.textContent = totalQuantity;
 }
