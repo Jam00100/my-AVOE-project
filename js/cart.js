@@ -8,7 +8,7 @@ let cart =
 	JSON.parse(localStorage.getItem("cart")) || [];
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount} from "./utils.js";
+import {formatPrice, updateCartCount, saveCart} from "./utils.js";
 
 // =============================
 // Render Cart
@@ -90,19 +90,6 @@ function calculateTotal() {
 		total += item.price * item.quantity;
 	});
 	cartTotal.textContent = formatPrice(total);
-
-}
-
-// =============================
-// Save Cart
-// =============================
-
-function saveCart() {
-
-	localStorage.setItem(
-		"cart",
-		JSON.stringify(cart)
-	);
 
 }
 
