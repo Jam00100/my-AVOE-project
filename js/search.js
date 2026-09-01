@@ -9,6 +9,7 @@ const searchResults = document.querySelector("#search-results");
 const searchStatus = document.querySelector("#search-status");
 
 let products = [];
+let searchTimer;
 
 function createProductCard(product) {
 	return `
@@ -36,12 +37,12 @@ function createProductCard(product) {
 	`;
 }
 
-function renderProducts(filteredProducts) {
+function renderProducts(filteredProducts, keyword = "") {
 	if (filteredProducts.length === 0) {
 		searchResults.innerHTML = "";
 
 		searchStatus.textContent =
-			"No products matched your search.";
+			`No products found for "${keyword}".`;
 
 		return;
 	}
@@ -50,26 +51,62 @@ function renderProducts(filteredProducts) {
 		.map(createProductCard)
 		.join("");
 
+	if (keyword === "") {
+		searchStatus.textContent = "";
+		return;
+	}
+
+	const productLabel =
+		filteredProducts.length === 1
+			? "product"
+			: "products";
+
 	searchStatus.textContent =
-		`${filteredProducts.length} product(s) found`;
+		`${filteredProducts.length} ${productLabel} found for "${keyword}".`;
+}
+
+function updateSearchURL(keyword) {
+	const url = new URL(window.location.href);
+
+	if (keyword === "") {
+		url.searchParams.delete("query");
+	} else {
+		url.searchParams.set("query", keyword);
+	}
+
+	window.history.replaceState({}, "", url);
 }
 
 function searchProducts() {
-	const keyword = searchInput.value
-		.trim()
-		.toLowerCase();
+	const rawKeyword = searchInput.value.trim();
+	const normalizedKeyword = rawKeyword.toLowerCase();
+
+	updateSearchURL(rawKeyword);
+
+	if (normalizedKeyword === "") {
+		renderProducts(products);
+		return;
+	}
 
 	const filteredProducts = products.filter((product) => {
 		const productName = product.name.toLowerCase();
 		const productCategory = product.category.toLowerCase();
 
 		return (
-			productName.includes(keyword) ||
-			productCategory.includes(keyword)
+			productName.includes(normalizedKeyword) ||
+			productCategory.includes(normalizedKeyword)
 		);
 	});
 
-	renderProducts(filteredProducts);
+	renderProducts(filteredProducts, rawKeyword);
+}
+
+function handleSearchInput() {
+	clearTimeout(searchTimer);
+
+	searchTimer = setTimeout(() => {
+		searchProducts();
+	}, 300);
 }
 
 async function loadProducts() {
@@ -82,7 +119,16 @@ async function loadProducts() {
 
 		products = await response.json();
 
-		renderProducts(products);
+		const searchParams = new URLSearchParams(
+			window.location.search
+		);
+
+		const initialKeyword =
+			searchParams.get("query") ?? "";
+
+		searchInput.value = initialKeyword;
+
+		searchProducts();
 	} catch (error) {
 		console.error(error);
 
@@ -91,7 +137,10 @@ async function loadProducts() {
 	}
 }
 
-searchInput.addEventListener("input", searchProducts);
+searchInput.addEventListener(
+	"input",
+	handleSearchInput
+);
 
 updateCartCount();
 setupMobileMenu();
