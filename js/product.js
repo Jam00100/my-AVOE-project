@@ -33,6 +33,8 @@ async function loadProduct() {
 
         // 建立按鈕
         setupQuantityButtons(product);
+		// 建立商品圖片切換功能
+		setupImageGallery(product);
 
     } catch (error) {
         console.error(error);
@@ -49,33 +51,133 @@ setupMobileMenu();
 // 建立商品詳細頁
 // =====================================
 function createProductDetail(product) {
-    return `
-        <div class="product-page">
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
-            </div>
+	const productImages =
+		product.images && product.images.length > 0
+			? product.images
+			: [product.image];
 
-            <div class="product-info">
-                <p class="product-category">
-                    ${product.category}
-                </p>
+	const thumbnailHTML = productImages
+		.map((image, index) => {
+			const isActive = index === 0;
 
-                <h1> ${product.name}</h1>
+			return `
+				<button
+					type="button"
+					class="thumbnail-button${isActive ? " active" : ""}"
+					data-image="${image}"
+					aria-label="View ${product.name} image ${index + 1}"
+					aria-pressed="${isActive}"
+				>
+					<img
+						src="${image}"
+						alt="${product.name} thumbnail ${index + 1}"
+						loading="lazy"
+					>
+				</button>
+			`;
+		})
+		.join("");
 
-                <p class="product-price">${formatPrice(product.price)}</p>
+	return `
+		<div class="product-page">
+			<div class="product-image">
+				<div class="main-image-wrapper">
+					<img
+						id="main-product-image"
+						src="${productImages[0]}"
+						alt="${product.name}"
+					>
+				</div>
 
-                <div class="quantity-selector">
-                    <button id="minus-btn">−</button>
-                    <span id="quantity">1</span>
-                    <button id="plus-btn">+</button>
-                </div>
+				<div
+					class="product-thumbnails"
+					aria-label="${product.name} image gallery"
+				>
+					${thumbnailHTML}
+				</div>
+			</div>
 
-                <button class="add-cart-btn">
-                    Add to Cart
-                </button>
-            </div>
-        </div>
-    `;
+			<div class="product-info">
+				<p class="product-category">
+					${product.category}
+				</p>
+
+				<h1>${product.name}</h1>
+
+				<p class="product-price">
+					${formatPrice(product.price)}
+				</p>
+
+				<div class="quantity-selector">
+					<button
+						id="minus-btn"
+						type="button"
+						aria-label="Decrease quantity"
+					>
+						−
+					</button>
+
+					<span id="quantity">1</span>
+
+					<button
+						id="plus-btn"
+						type="button"
+						aria-label="Increase quantity"
+					>
+						+
+					</button>
+				</div>
+
+				<button
+					class="add-cart-btn"
+					type="button"
+				>
+					Add to Cart
+				</button>
+			</div>
+		</div>
+	`;
+}
+
+// =====================================
+// 商品圖片 Gallery
+// =====================================
+function setupImageGallery(product) {
+	const mainImage = document.getElementById(
+		"main-product-image"
+	);
+
+	const thumbnailButtons = document.querySelectorAll(
+		".thumbnail-button"
+	);
+
+	if (!mainImage || thumbnailButtons.length === 0) {
+		return;
+	}
+
+	thumbnailButtons.forEach((button, index) => {
+		button.addEventListener("click", () => {
+			const selectedImage = button.dataset.image;
+
+			mainImage.src = selectedImage;
+			mainImage.alt =
+				`${product.name} image ${index + 1}`;
+
+			thumbnailButtons.forEach((thumbnail) => {
+				thumbnail.classList.remove("active");
+				thumbnail.setAttribute(
+					"aria-pressed",
+					"false"
+				);
+			});
+
+			button.classList.add("active");
+			button.setAttribute(
+				"aria-pressed",
+				"true"
+			);
+		});
+	});
 }
 
 // 數量按鈕
