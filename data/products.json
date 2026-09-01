@@ -1,23 +1,50 @@
 [
 	{
-		"id" : 1,
+		"id": 1,
 		"name": "Nova Set",
 		"category": "Shirt",
 		"price": 980,
-		"image": "./images/Nova_Set/Nova_set_1.jpg"
+		"image": "./images/Nova_Set/Nova_set_1.jpg",
+		"images": [
+			"./images/Nova_Set/Nova_set_1.jpg",
+			"./images/Nova_Set/Nova_set_2.jpg",
+			"./images/Nova_Set/Nova_set_3.jpg",
+			"./images/Nova_Set/Nova_set_4.jpg",
+			"./images/Nova_Set/Nova_set_5.jpg",
+			"./images/Nova_Set/Nova_set_6.jpg",
+			"./images/Nova_Set/Nova_set_7.jpg"
+		]
 	},
 	{
-		"id" : 2,
+		"id": 2,
 		"name": "Sundae Swimwear",
 		"category": "Swimwear",
 		"price": 1280,
-		"image": "./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_3.jpg"
+		"image": "./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_3.jpg",
+		"images": [
+			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_3.jpg",
+			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_1.jpg",
+			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_2.jpg",
+			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_4.jpg"
+		]
 	},
 	{
-		"id" : 3,
+		"id": 3,
 		"name": "NF Body Top",
 		"category": "Shirt",
 		"price": 1380,
-		"image": "./images/NF_BODY_TOP/NF_BODY_TOP_1.jpg"
+		"image": "./images/NF_BODY_TOP/NF_BODY_TOP_1.jpg",
+		"images": [
+			"./images/NF_BODY_TOP/NF_BODY_TOP_1.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_2.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_3.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_4.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_5.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_6.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_7.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_8.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_9.jpg",
+			"./images/NF_BODY_TOP/NF_BODY_TOP_10.jpg"
+		]
 	}
 ]
