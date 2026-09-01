@@ -13,7 +13,7 @@ let products = [];
 let selectedCategory = "All";
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount} from "./utils.js";
+import {formatPrice, updateCartCount, setupMobileMenu} from "./utils.js";
 
 // =============================
 // Load Products
@@ -207,3 +207,5 @@ filterButtons.forEach(button => {
 loadProducts();
 
 updateCartCount();
+
+setupMobileMenu();

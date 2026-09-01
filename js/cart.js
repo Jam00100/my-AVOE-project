@@ -8,7 +8,7 @@ let cart =
 	JSON.parse(localStorage.getItem("cart")) || [];
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount, saveCart} from "./utils.js";
+import {formatPrice, updateCartCount, saveCart, setupMobileMenu} from "./utils.js";
 
 // =============================
 // Render Cart
@@ -47,7 +47,9 @@ function renderCart() {
 
 					<h2>${item.name}</h2>
 
-					<p>${item.price}</p>
+					<p class="cart-item-price">
+						${formatPrice(item.price)}
+					</p>
 
 					<div class="cart-quantity">
 						<button
@@ -173,3 +175,4 @@ renderCart();
 calculateTotal();
 updateCartCount();
 setupCartEvents();
+setupMobileMenu();

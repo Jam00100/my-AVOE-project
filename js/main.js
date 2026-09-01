@@ -3,7 +3,7 @@
 // =============================
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount} from "./utils.js";
+import {formatPrice, updateCartCount, setupMobileMenu} from "./utils.js";
 
 // 1. 取得商品
 const productGrid = document.getElementById("product-grid");
@@ -48,3 +48,5 @@ fetch("./data/products.json")
 	.catch(error => {
 		console.error("商品資料載入失敗：", error);
 	});
+
+setupMobileMenu();

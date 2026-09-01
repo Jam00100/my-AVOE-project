@@ -1,7 +1,7 @@
 // Product Detail
 
 // 從utils.js中import function
-import {formatPrice, updateCartCount, getCart, saveCart} from "./utils.js";
+import {formatPrice, updateCartCount, getCart, saveCart, setupMobileMenu} from "./utils.js";
 
 // 取得商品資訊顯示區域
 const productDetail = document.getElementById("product-detail");
@@ -43,6 +43,7 @@ async function loadProduct() {
 // 執行
 loadProduct();
 updateCartCount();
+setupMobileMenu();
 
 // =====================================
 // 建立商品詳細頁
