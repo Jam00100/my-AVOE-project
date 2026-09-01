@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Search | AVOE</title>
+
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+	<header class="header">
+		<div class="container header-container">
+			<a href="./index.html" class="logo">
+				AVOE
+			</a>
+
+			<button
+				class="menu-toggle"
+				type="button"
+				aria-label="Toggle navigation menu"
+				aria-expanded="false"
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+
+			<nav class="navbar">
+				<ul class="nav-links">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./collection.html">Collection</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="./search.html">Search</a></li>
+					<li>
+						<a href="./cart.html">
+							Cart (<span id="cart-count">0</span>)
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main class="search-page">
+		<div class="container">
+			<div class="search-header">
+				<h1>Search Products</h1>
+
+				<label for="search-input" class="visually-hidden">
+					Search products
+				</label>
+
+				<input
+					type="search"
+					id="search-input"
+					class="search-input"
+					placeholder="Search by product name or category..."
+					autocomplete="off"
+				>
+			</div>
+
+			<p id="search-status" class="search-status"></p>
+
+			<div id="search-results" class="product-grid"></div>
+		</div>
+	</main>
+
+	<script type="module" src="./js/search.js"></script>
+</body>
+
+</html>
