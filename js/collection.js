@@ -1,3 +1,5 @@
+import {formatPrice, updateCartCount, setupMobileMenu} from "./utils.js";
+
 const collectionGrid =
 	document.getElementById("collection-grid");
 
@@ -7,43 +9,50 @@ const searchInput =
 const filterButtons =
 	document.querySelectorAll(".filter-btn");
 
+const sortSelect =
+	document.getElementById("sort-select");
+
+const collectionStatus =
+	document.getElementById("collection-status");
 
 let products = [];
-
 let selectedCategory = "All";
 
-// 從utils.js中import function
-import {formatPrice, updateCartCount, setupMobileMenu} from "./utils.js";
 
 // =============================
 // Load Products
 // =============================
 
 async function loadProducts() {
-
 	try {
-
 		const response =
 			await fetch("./data/products.json");
 
-		products =
-			await response.json();
+		if (!response.ok) {
+			throw new Error(
+				"Failed to load products."
+			);
+		}
 
-		renderProducts(products);
+		products = await response.json();
+
+		applyFilters();
 
 	} catch (error) {
-
 		console.error(
 			"Failed to load products:",
 			error
 		);
 
 		collectionGrid.innerHTML = `
-			<p>Failed to load products.</p>
+			<p class="no-products">
+				Failed to load products.
+			</p>
 		`;
 
+		collectionStatus.textContent =
+			"Unable to load products.";
 	}
-
 }
 
 
@@ -52,17 +61,14 @@ async function loadProducts() {
 // =============================
 
 function createProductCard(product) {
-
 	return `
 		<div class="product-card">
 
 			<a href="./product.html?id=${product.id}">
-
 				<img
 					src="${product.image}"
 					alt="${product.name}"
 				>
-
 			</a>
 
 			<p class="product-category">
@@ -79,7 +85,6 @@ function createProductCard(product) {
 
 		</div>
 	`;
-
 }
 
 
@@ -88,9 +93,7 @@ function createProductCard(product) {
 // =============================
 
 function renderProducts(productList) {
-
 	if (productList.length === 0) {
-
 		collectionGrid.innerHTML = `
 			<p class="no-products">
 				No products found.
@@ -98,114 +101,156 @@ function renderProducts(productList) {
 		`;
 
 		return;
-
 	}
 
-
-	let html = "";
-
-
-	productList.forEach(product => {
-
-		html +=
-			createProductCard(product);
-
-	});
-
-
-	collectionGrid.innerHTML = html;
-
+	collectionGrid.innerHTML = productList
+		.map(createProductCard)
+		.join("");
 }
 
 
 // =============================
-// Filters
+// Update Product Count
+// =============================
+
+function updateCollectionStatus(productCount) {
+	if (productCount === 0) {
+		collectionStatus.textContent =
+			"No products found.";
+
+		return;
+	}
+
+	const productLabel =
+		productCount === 1
+			? "product"
+			: "products";
+
+	collectionStatus.textContent =
+		`${productCount} ${productLabel}`;
+}
+
+
+// =============================
+// Sort Products
+// =============================
+
+function sortProducts(productList) {
+	const sortedProducts = [...productList];
+
+	switch (sortSelect.value) {
+		case "price-low-high":
+			sortedProducts.sort(
+				(a, b) => a.price - b.price
+			);
+			break;
+
+		case "price-high-low":
+			sortedProducts.sort(
+				(a, b) => b.price - a.price
+			);
+			break;
+
+		case "name-a-z":
+			sortedProducts.sort(
+				(a, b) =>
+					a.name.localeCompare(b.name)
+			);
+			break;
+
+		default:
+			break;
+	}
+
+	return sortedProducts;
+}
+
+
+// =============================
+// Apply Filters and Sorting
 // =============================
 
 function applyFilters() {
-
 	const keyword =
 		searchInput.value
 			.trim()
 			.toLowerCase();
 
-
 	const filteredProducts =
-		products.filter(product => {
-
+		products.filter((product) => {
 			const matchesSearch =
-
 				product.name
 					.toLowerCase()
-					.includes(keyword)
-
-				||
-
+					.includes(keyword) ||
 				product.category
 					.toLowerCase()
 					.includes(keyword);
 
-
 			const matchesCategory =
-
-				selectedCategory === "All"
-
-				||
-
+				selectedCategory === "All" ||
 				product.category === selectedCategory;
-
 
 			return (
 				matchesSearch &&
 				matchesCategory
 			);
-
 		});
 
+	const sortedProducts =
+		sortProducts(filteredProducts);
 
-	renderProducts(filteredProducts);
+	renderProducts(sortedProducts);
 
+	updateCollectionStatus(
+		sortedProducts.length
+	);
 }
 
 
-// Search
+// =============================
+// Search Event
+// =============================
+
 searchInput.addEventListener(
 	"input",
 	applyFilters
 );
 
 
-// Category
-filterButtons.forEach(button => {
+// =============================
+// Category Events
+// =============================
 
+filterButtons.forEach((button) => {
 	button.addEventListener("click", () => {
-
 		selectedCategory =
 			button.dataset.category;
 
-
-		filterButtons.forEach(btn => {
-
-			btn.classList.remove("active");
-
+		filterButtons.forEach((filterButton) => {
+			filterButton.classList.remove("active");
 		});
-
 
 		button.classList.add("active");
 
-
 		applyFilters();
-
 	});
-
 });
+
+
+// =============================
+// Sort Event
+// =============================
+
+sortSelect.addEventListener(
+	"change",
+	applyFilters
+);
+
 
 // =============================
 // Start
 // =============================
 
 loadProducts();
-
 updateCartCount();
-
 setupMobileMenu();

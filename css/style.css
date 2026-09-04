@@ -370,6 +370,13 @@ footer{
 /* ===================================================
    Collection Page
 =================================================== */
+/* 限制 Collection 商品區域寬度 */
+#collection-grid{
+	width:100%;
+	max-width:1050px;
+	margin-left:auto;
+	margin-right:auto;
+}
 
 .collection-section{
 	padding:80px 0;
@@ -423,6 +430,54 @@ footer{
 .filter-btn.active{
 	background:#111;
 	color:white;
+}
+
+/* Collection Sort */
+
+.collection-sort{
+	display:flex;
+	align-items:center;
+	gap:12px;
+}
+
+.collection-sort label{
+	color:#555;
+	font-size:15px;
+	font-weight:bold;
+}
+
+.collection-sort select{
+	min-width:200px;
+	padding:11px 38px 11px 14px;
+	border:1px solid #ccc;
+	border-radius:4px;
+	background-color:white;
+	color:#222;
+	font-family:inherit;
+	font-size:15px;
+	cursor:pointer;
+	transition:
+		border-color .3s ease,
+		box-shadow .3s ease;
+}
+
+.collection-sort select:hover{
+	border-color:#777;
+}
+
+.collection-sort select:focus{
+	border-color:#111;
+	box-shadow:0 0 0 3px rgba(0,0,0,.1);
+	outline:none;
+}
+
+/* Collection Result Count */
+
+.collection-status{
+	min-height:20px;
+	color:#666;
+	font-size:15px;
+	text-align:center;
 }
 
 .no-products{
@@ -590,6 +645,9 @@ footer{
 	.product-grid{
 		grid-template-columns:repeat(2,1fr);
 	}
+	#collection-grid{
+		max-width:720px;
+	}
 }
 
 @media (max-width:768px){
@@ -720,5 +778,108 @@ footer{
 		margin-left: 0;
 		margin-right: 0;
 		text-align: left;
+	}
+
+	#collection-grid{
+		width:88%;
+		max-width:330px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+/* ================= Mobile Collection ================= */
+
+	.collection-section{
+		padding:50px 0;
+	}
+
+	.collection-title{
+		font-size:34px;
+		margin-bottom:30px;
+	}
+
+	/* 控制區不要貼近手機兩側 */
+
+	.collection-controls{
+		width:calc(100% - 32px);
+		max-width:520px;
+		margin:0 auto 40px;
+		align-items:flex-start;
+		gap:20px;
+	}
+
+	/* 搜尋框 */
+
+	#search-input{
+		width:100%;
+		max-width:none;
+		padding:13px 16px;
+		border-radius:4px;
+	}
+
+	/* 分類改成可橫向滑動 */
+
+	.category-filters{
+		width:100%;
+		display:flex;
+		flex-wrap:nowrap;
+		justify-content:flex-start;
+		gap:10px;
+		overflow-x:auto;
+		padding:2px 2px 8px;
+		scrollbar-width:none;
+	}
+
+	.category-filters::-webkit-scrollbar{
+		display:none;
+	}
+
+	.filter-btn{
+		flex:0 0 auto;
+		min-width:auto;
+		padding:10px 18px;
+		border-radius:999px;
+		white-space:nowrap;
+	}
+
+	/* 排序選單不再填滿整行 */
+
+	.collection-sort{
+		display:flex;
+		flex-direction:column;
+		align-items:flex-start;
+		gap:8px;
+	}
+
+	.collection-sort select{
+		width:240px;
+		max-width:100%;
+		min-width:0;
+		padding:11px 36px 11px 14px;
+	}
+
+	.collection-status{
+		width:100%;
+		text-align:left;
+	}
+
+	/* 商品卡片 */
+
+	#collection-grid{
+		width:100%;
+		max-width:300px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	/* 顯示完整圖片，不進行裁切 */
+
+	#collection-grid .product-card img{
+		width:100%;
+		height:auto;
+		aspect-ratio:4 / 5;
+		object-fit:contain;
+		object-position:center;
+		background-color:#f5f5f5;
 	}
 }

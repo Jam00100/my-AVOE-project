@@ -70,46 +70,80 @@
 
 	<main>
 
-		<section class="collection-section">
+		<div class="collection-controls">
 
-			<div class="container">
+			<input
+				type="search"
+				id="search-input"
+				placeholder="Search products..."
+				aria-label="Search products"
+			>
 
-				<h1 class="collection-title">
-					Collection
-				</h1>
+			<div
+				class="category-filters"
+				aria-label="Product categories"
+			>
+				<button
+					type="button"
+					class="filter-btn active"
+					data-category="All"
+				>
+					All
+				</button>
 
-				<div class="collection-controls">
+				<button
+					type="button"
+					class="filter-btn"
+					data-category="Shirt"
+				>
+					Shirt
+				</button>
 
-					<input
-						type="search"
-						id="search-input"
-						placeholder="Search products..."
-					>
-
-					<div class="category-filters">
-
-						<button
-							class="filter-btn active"
-							data-category="All">
-							All
-						</button>
-
-						<button
-							class="filter-btn"
-							data-category="Swimwear">
-							Swimwear
-						</button>
-
-					</div>
-
-				</div>
-
-				<div
-					class="product-grid"
-					id="collection-grid">
-				</div>
-
+				<button
+					type="button"
+					class="filter-btn"
+					data-category="Swimwear"
+				>
+					Swimwear
+				</button>
 			</div>
+
+			<div class="collection-sort">
+				<label for="sort-select">
+					Sort by
+				</label>
+
+				<select id="sort-select">
+					<option value="default">
+						Default
+					</option>
+
+					<option value="price-low-high">
+						Price: Low to High
+					</option>
+
+					<option value="price-high-low">
+						Price: High to Low
+					</option>
+
+					<option value="name-a-z">
+						Name: A to Z
+					</option>
+				</select>
+			</div>
+
+			<p
+				id="collection-status"
+				class="collection-status"
+				aria-live="polite"
+			></p>
+
+		</div>
+		<div
+			class="product-grid"
+			id="collection-grid"
+		>
+		</div>
 
 		</section>
 
