@@ -167,14 +167,117 @@ function sortProducts(productList) {
 
 
 // =============================
+// Update Collection URL
+// =============================
+
+function updateCollectionURL(keyword) {
+	const url =
+		new URL(window.location.href);
+
+	if (keyword === "") {
+		url.searchParams.delete("query");
+	} else {
+		url.searchParams.set(
+			"query",
+			keyword
+		);
+	}
+
+	if (selectedCategory === "All") {
+		url.searchParams.delete("category");
+	} else {
+		url.searchParams.set(
+			"category",
+			selectedCategory
+		);
+	}
+
+	if (sortSelect.value === "default") {
+		url.searchParams.delete("sort");
+	} else {
+		url.searchParams.set(
+			"sort",
+			sortSelect.value
+		);
+	}
+
+	window.history.replaceState(
+		{},
+		"",
+		url
+	);
+}
+
+
+// =============================
+// Restore Controls From URL
+// =============================
+
+function restoreControlsFromURL() {
+	const searchParams =
+		new URLSearchParams(
+			window.location.search
+		);
+
+	const initialKeyword =
+		searchParams.get("query") ?? "";
+
+	const initialCategory =
+		searchParams.get("category") ?? "All";
+
+	const initialSort =
+		searchParams.get("sort") ?? "default";
+
+	searchInput.value = initialKeyword;
+
+	const categoryExists =
+		Array.from(filterButtons).some(
+			(button) =>
+				button.dataset.category ===
+				initialCategory
+		);
+
+	selectedCategory =
+		categoryExists
+			? initialCategory
+			: "All";
+
+	filterButtons.forEach((button) => {
+		const isActive =
+			button.dataset.category ===
+			selectedCategory;
+
+		button.classList.toggle(
+			"active",
+			isActive
+		);
+	});
+
+	const sortExists =
+		Array.from(sortSelect.options).some(
+			(option) =>
+				option.value === initialSort
+		);
+
+	sortSelect.value =
+		sortExists
+			? initialSort
+			: "default";
+}
+
+
+// =============================
 // Apply Filters and Sorting
 // =============================
 
 function applyFilters() {
+	const rawKeyword =
+		searchInput.value.trim();
+
 	const keyword =
-		searchInput.value
-			.trim()
-			.toLowerCase();
+		rawKeyword.toLowerCase();
+
+	updateCollectionURL(rawKeyword);
 
 	const filteredProducts =
 		products.filter((product) => {
@@ -226,9 +329,13 @@ filterButtons.forEach((button) => {
 		selectedCategory =
 			button.dataset.category;
 
-		filterButtons.forEach((filterButton) => {
-			filterButton.classList.remove("active");
-		});
+		filterButtons.forEach(
+			(filterButton) => {
+				filterButton.classList.remove(
+					"active"
+				);
+			}
+		);
 
 		button.classList.add("active");
 
@@ -251,6 +358,7 @@ sortSelect.addEventListener(
 // Start
 // =============================
 
+restoreControlsFromURL();
 loadProducts();
 updateCartCount();
 setupMobileMenu();
