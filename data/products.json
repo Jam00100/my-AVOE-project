@@ -13,6 +13,19 @@
 			"./images/Nova_Set/Nova_set_5.jpg",
 			"./images/Nova_Set/Nova_set_6.jpg",
 			"./images/Nova_Set/Nova_set_7.jpg"
+		],
+		"sizes": [
+			"S", "M", "L"
+		],
+		"colors": [
+			{
+				"name": "Black",
+				"value": "#111111"
+			},
+			{
+				"name": "White",
+				"value": "#ffffff"
+			}
 		]
 	},
 	{
@@ -26,6 +39,23 @@
 			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_1.jpg",
 			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_2.jpg",
 			"./images/Sundae_Swimwear_Collection/Sundae_Swimwear_Collection_4.jpg"
+		],
+		"sizes": [
+			"S", "M", "L"
+		],
+		"colors": [
+			{
+				"name": "Pink",
+				"value": "#FFC0CB"
+			},
+			{
+				"name": "White",
+				"value": "#ffffff"
+			},
+			{
+				"name": "Powder Blue",
+				"value": "#B0E0E6"
+			}
 		]
 	},
 	{
@@ -45,6 +75,19 @@
 			"./images/NF_BODY_TOP/NF_BODY_TOP_8.jpg",
 			"./images/NF_BODY_TOP/NF_BODY_TOP_9.jpg",
 			"./images/NF_BODY_TOP/NF_BODY_TOP_10.jpg"
+		],
+		"sizes": [
+			"S", "M", "L"
+		],
+		"colors": [
+			{
+				"name": "Black",
+				"value": "#111111"
+			},
+			{
+				"name": "White",
+				"value": "#ffffff"
+			}
 		]
 	}
 ]

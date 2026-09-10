@@ -234,6 +234,123 @@ footer{
 	line-height:1.8;
 }
 
+/* ===================================================
+   Product Options
+=================================================== */
+
+.product-options{
+	display:flex;
+	flex-direction:column;
+	gap:24px;
+}
+
+.product-option-group{
+	display:flex;
+	flex-direction:column;
+	gap:12px;
+}
+
+.option-label{
+	font-size:16px;
+	font-weight:bold;
+	color:#222;
+}
+
+.size-options,
+.color-options{
+	display:flex;
+	flex-wrap:wrap;
+	gap:10px;
+}
+
+
+/* ================= Size Buttons ================= */
+.size-option{
+	width:48px;
+	height:48px;
+	padding:0;
+	border:1px solid #bbb;
+	border-radius:10px;
+	background:white;
+	color:#222;
+	font-family:inherit;
+	font-size:15px;
+	font-weight:bold;
+	cursor:pointer;
+	transition:
+		border-color .2s ease,
+		background-color .2s ease,
+		color .2s ease,
+		transform .2s ease;
+}
+
+.size-option:hover{
+	border-color:#222;
+	transform:translateY(-2px);
+}
+
+.size-option.active{
+	border-color:#111;
+	background:#111;
+	color:white;
+}
+
+.size-option:focus-visible{
+	outline:2px solid #222;
+	outline-offset:3px;
+}
+
+
+/* ================= Color Buttons ================= */
+.color-option{
+	width:44px;
+	height:44px;
+	padding:4px;
+	border:2px solid transparent;
+	border-radius:10px;
+	background:white;
+	cursor:pointer;
+	transition:
+		border-color .2s ease,
+		transform .2s ease;
+}
+
+.color-option:hover{
+	transform:translateY(-2px);
+}
+
+.color-option.active{
+	border-color:#111;
+}
+
+.color-option:focus-visible{
+	outline:2px solid #222;
+	outline-offset:3px;
+}
+
+.color-swatch{
+	display:block;
+	width:100%;
+	height:100%;
+	border:1px solid #ccc;
+	border-radius:6px;
+}
+
+/* 隱藏顏色名稱，按鈕仍有 aria-label */
+
+.color-name{
+	display:none;
+}
+
+/* ================= Option Error ================= */
+
+.option-error{
+	min-height:20px;
+	margin:0;
+	color:#c62828;
+	font-size:14px;
+}
+
 /* Quantity */
 .quantity-selector{
 	display:flex;
@@ -246,6 +363,7 @@ footer{
 	width:40px;
 	height:40px;
 	border:none;
+	border-radius:10px;
 	background:#111;
 	color:white;
 	font-size:20px;
@@ -276,6 +394,7 @@ footer{
 	background:#111;
 	color:white;
 	border:none;
+	border-radius:10px;
 	cursor:pointer;
 	font-size:16px;
 	transition:.3s;
@@ -326,6 +445,26 @@ footer{
 	font-size:22px;
 }
 
+.cart-item-options{
+	display:flex;
+	flex-wrap:wrap;
+	gap:8px;
+}
+
+.cart-item-option{
+	padding:6px 10px;
+	border:1px solid #ddd;
+	border-radius:6px;
+	background-color:#f7f7f7;
+	color:#555;
+	font-size:14px;
+}
+
+.cart-item-option span{
+	color:#222;
+	font-weight:bold;
+}
+
 .cart-quantity{
 	display:flex;
 	align-items:center;
@@ -336,6 +475,7 @@ footer{
 	width:36px;
 	height:36px;
 	border:1px solid #ddd;
+	border-radius:10px;
 	background:white;
 	cursor:pointer;
 	font-size:18px;

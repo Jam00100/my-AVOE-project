@@ -32,7 +32,7 @@ function renderCart() {
 	}
 
 	let html = "";
-	cart.forEach(item => {
+	cart.forEach((item, index) => {
 
 		html += `
 			<div class="cart-item">
@@ -46,15 +46,38 @@ function renderCart() {
 				<div class="cart-item-info">
 
 					<h2>${item.name}</h2>
+					<div class="cart-item-options">
 
+						${item.size
+							? `
+								<p class="cart-item-option">
+									<span>Size:</span>
+									${item.size}
+								</p>
+							`
+							: ""
+						}
+
+						${item.color
+							? `
+								<p class="cart-item-option">
+									<span>Color:</span>
+									${item.color}
+								</p>
+							`
+							: ""
+						}
+
+					</div>
 					<p class="cart-item-price">
 						${formatPrice(item.price)}
 					</p>
 
 					<div class="cart-quantity">
 						<button
+							type="button"
 							class="cart-minus"
-							data-id="${item.id}">
+							data-index="${index}">
 							−
 						</button>
 
@@ -63,15 +86,17 @@ function renderCart() {
 						</span>
 
 						<button
+							type="button"
 							class="cart-plus"
-							data-id="${item.id}">
+							data-index="${index}">
 							+
 						</button>
 					</div>
 
 					<button
+						type="button"
 						class="remove-cart-item"
-						data-id="${item.id}">
+						data-index="${index}">
 						Remove
 					</button>
 				</div>
@@ -114,12 +139,11 @@ function setupCartEvents() {
 	plusButtons.forEach(button => {
 		button.addEventListener("click", () => {
 
-			const id =
-				Number(button.dataset.id);
-			const product =
-				cart.find(item => item.id === id);
+			const index =
+				Number(button.dataset.index);
 
-			product.quantity++;
+			cart[index].quantity++;
+
 			updateCart();
 		});
 	});
@@ -129,14 +153,13 @@ function setupCartEvents() {
 
 		button.addEventListener("click", () => {
 
-			const id =
-				Number(button.dataset.id);
-			const product =
-				cart.find(item => item.id === id);
+			const index =
+				Number(button.dataset.index);
 
-			if (product.quantity > 1) {
-				product.quantity--;
+			if (cart[index].quantity > 1) {
+				cart[index].quantity--;
 			}
+
 			updateCart();
 		});
 	});
@@ -144,11 +167,12 @@ function setupCartEvents() {
 	// Remove
 	removeButtons.forEach(button => {
 		button.addEventListener("click", () => {
-			const id =
-				Number(button.dataset.id);
 
-			cart =
-				cart.filter(item => item.id !== id);
+			const index =
+				Number(button.dataset.index);
+
+			cart.splice(index, 1);
+
 			updateCart();
 		});
 	});
